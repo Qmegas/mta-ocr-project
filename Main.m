@@ -25,7 +25,6 @@ function [ output_args ] = Main( )
     for k = 1:length(Frames)
         frame_data = Frames{k};
         letter_matrix = I(frame_data(2):(frame_data(2)+frame_data(4)), frame_data(1):(frame_data(1)+frame_data(3)));
-        imshow(letter_matrix);
         letter_vectors{k} = Step5_Letter2Vector(letter_matrix);
     end
     
