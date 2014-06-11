@@ -31,9 +31,7 @@ function [ output_args ] = Main( )
     %Step 6 - Running DTW for each component
     for k = 1:length(Frames)
         comparison_table = Step6_DTW(letter_vectors{k});
+        %TODO: Step 6.5 - Find bigest value + output letter
     end
-    
-    %Step 6.5 - Find bigest value + output letter
-    %TODO
 end
 
