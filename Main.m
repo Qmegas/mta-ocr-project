@@ -1,4 +1,4 @@
-function [ output_args ] = Main( DB_letters )
+function [ final_letters ] = Main( DB_letters )
 
     %Step 1 - Binarization
     I = Step1_Binarization('Test.png');
@@ -27,10 +27,14 @@ function [ output_args ] = Main( DB_letters )
     end
     
     %Step 6 - Running DTW for each component
+    final_letters = zeros(length(Frames), 1);
     for k = 1:length(Frames)
         comparison_table = Step6_DTW(letter_vectors{k}, DB_letters);
-        output_args = comparison_table;
-        return;
-        %TODO: Step 6.5 - Find bigest value + output letter
+        
+        %Find smallest value
+        final_letters(k) = find(comparison_table == min(comparison_table));
+        
+        %TODO: output letter
     end
 end
+
