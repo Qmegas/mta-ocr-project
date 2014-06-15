@@ -1,4 +1,4 @@
-function [ output_args ] = Main( )
+function [ output_args ] = Main( DB_letters )
 
     %Step 1 - Binarization
     I = Step1_Binarization('Test.png');
@@ -17,9 +17,7 @@ function [ output_args ] = Main( )
     for k = 1:length(Frames)
         rectangle('EdgeColor', [1 0 0], 'Position', Frames{k});
     end
-    
-    return;
-    
+
     %Step 5 - Creating vector
     letter_vectors = cell(length(Frames), 1);
     for k = 1:length(Frames)
@@ -30,8 +28,9 @@ function [ output_args ] = Main( )
     
     %Step 6 - Running DTW for each component
     for k = 1:length(Frames)
-        comparison_table = Step6_DTW(letter_vectors{k});
+        comparison_table = Step6_DTW(letter_vectors{k}, DB_letters);
+        output_args = comparison_table;
+        return;
         %TODO: Step 6.5 - Find bigest value + output letter
     end
 end
-
