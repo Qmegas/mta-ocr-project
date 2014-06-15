@@ -2,7 +2,9 @@ mta-ocr-project
 ===============
 
 How to run build function:
-  DB_letters = BuildTestDB();
+
+<pre>DB_letters = BuildTestDB();</pre>
 
 How to run main function:
-  result = Main(DB_letters);
+
+<pre>result = Main(DB_letters);</pre>
