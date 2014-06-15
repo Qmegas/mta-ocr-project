@@ -1,9 +1,9 @@
 function [ DB_letters ] = BuildTestDB(  )
-    files = ['01.png'; '02.png'];
+    files = ['01.png'; '02.png']; %TODO: Add all letters
     files_num = size(files, 1);
-    LETERS_PER_IMAGE = 4;
+    LETTERS_PER_IMAGE = 4;
     
-    DB_letters = cell(files_num*LETERS_PER_IMAGE, 1);
+    DB_letters = cell(files_num*LETTERS_PER_IMAGE, 1);
     letter_count = 1;
     
     for i = 1:files_num
@@ -12,7 +12,7 @@ function [ DB_letters ] = BuildTestDB(  )
         Frames = Step3_Componenting(I);
         Frames = Step4_ComponentMerging(Frames);
         
-        for k = 1:LETERS_PER_IMAGE
+        for k = 1:LETTERS_PER_IMAGE
             frame_data = Frames{k};
             letter_matrix = I(frame_data(2):(frame_data(2)+frame_data(4)), frame_data(1):(frame_data(1)+frame_data(3)));
             DB_letters{letter_count} = Step5_Letter2Vector(letter_matrix);
@@ -20,4 +20,3 @@ function [ DB_letters ] = BuildTestDB(  )
         end
     end
 end
-
