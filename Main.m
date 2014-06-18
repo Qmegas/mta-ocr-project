@@ -1,10 +1,9 @@
-function [ final_letters ] = Main( image )
+function [ final_letters ] = Main( image, DB_letters )
 % This is the main function for OCR.
 % input:image - which as word in hand write which need to be tested.
 % Output finalPhrase = the word  after OCR
 
 % Pre processing
-DB_letters = BuildTestDB();
 
 keySet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27};
 valueSet = {'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ' 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ', 'ק', 'ר', 'ש', 'ת', 'ך', 'ם', 'ן', 'ף', 'ץ'};
