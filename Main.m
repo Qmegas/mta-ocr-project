@@ -1,7 +1,16 @@
-function [ final_letters ] = Main( DB_letters )
+function [ final_letters ] = Main( image )
+% This is the main function for OCR.
+% input:image - which as word in hand write which need to be tested.
+% Output finalPhrase = the word  after OCR
+
+% Pre processing
+DB_letters = BuildTestDB();
+
+keySet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27};
+valueSet = {'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ' 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ', 'ק', 'ר', 'ש', 'ת', 'ך', 'ם', 'ן', 'ף', 'ץ'};
 
     %Step 1 - Binarization
-    I = Step1_Binarization('Test.png');
+    I = Step1_Binarization(image);
     
     %Step 2 - Thining
     I = Step2_Thining(I);
@@ -31,10 +40,13 @@ function [ final_letters ] = Main( DB_letters )
     for k = 1:length(Frames)
         comparison_table = Step6_DTW(letter_vectors{k}, DB_letters);
         
-        %Find smallest value
-        final_letters(k) = find(comparison_table == min(comparison_table));
-        
-        %TODO: output letter
+		%Find smallest value
+		minTable = find(comparison_table == min(comparison_table));
+		% There is might be a chance that the find function returns more
+		% than one anwers, therefoer we do this initialization in two
+		% steps.
+		final_letters(k) = minTable(1);
+		finalPhrase = strcat(mapOfChars(round(final_letters(k) / 4)), finalPhrase);
     end
 end
 
