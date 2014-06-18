@@ -7,4 +7,4 @@ How to run build function:
 
 How to run main function:
 
-<pre>result = Main(DB_letters);</pre>
+<pre>result = Main('Test.png', DB_letters);</pre>
