@@ -11,7 +11,7 @@ valueSet = {'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ' 'ל
     %Step 1 - Binarization
     I = Step1_Binarization(image);
     
-    %Step 2 - Thining
+    %Step 2 - Thinning
     I = Step2_Thining(I);
     
     %Step 3 - Split to components
