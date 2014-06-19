@@ -1,13 +1,14 @@
-function [ finalPhrase ] = Main( image, DB_letters )
-% This is the main function for OCR.
-% input:image - which as word in hand write which need to be tested.
-% Output finalPhrase = the word  after OCR
+function [ finalPhrase ] = Main( image )
+    % This is the main function for OCR.
+    % input:image - which as word in hand write which need to be tested.
+    % Output finalPhrase = the word  after OCR
 
-% Pre processing
-
-keySet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27};
-valueSet = {'×', '×‘', '×’', '×“', '×”', '×•', '×–', '×—', '×˜', '×™', '×›' '×œ', '×', '× ', '×¡', '×¢', '×¤', '×¦', '×§', '×¨', '×©', '×ª', '×š', '×', '×Ÿ', '×£', '×¥'};
-
+    % Pre processing
+    DB_letters = BuildTestDB();
+    keySet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28};
+    valueSet = {'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ë' 'ì', 'î', 'ğ', 'ñ', 'ò', 'ô', 'ö', '÷', 'ø', 'ù', 'ú', 'ê', 'í', 'ï', 'ó', 'õ', 'c'};
+    mapOfChars = containers.Map(keySet, valueSet);
+    
     %Step 1 - Binarization
     I = Step1_Binarization(image);
     
@@ -54,7 +55,24 @@ valueSet = {'×', '×‘', '×’', '×“', '×”', '×•', '×–', '×—', '×˜', '×™', '×›' '×œ
 		% than one anwers, therefoer we do this initialization in two
 		% steps.
 		final_letters(k) = minTable(1);
-		finalPhrase = strcat(mapOfChars(round(final_letters(k) / 4)), finalPhrase);
+        letter = mapOfChars(ceil(final_letters(k) / 4));
+        % 
+        if(isempty(finalPhrase) == false)
+            
+            if(strcmp(letter, 'c') == true && (strcmp(finalPhrase(1), 'ï') == true || strcmp(finalPhrase(1),'å') == true || strcmp(finalPhrase(1), 'é') == true))
+                finalPhrase(1) = 'à';
+            else
+                finalPhrase = strcat(letter, finalPhrase);    
+            end
+        else
+            finalPhrase = strcat(letter, finalPhrase);
+        end
+        
+        % Handling the space case
+        if(length(letter_spaces) > k && k > 1)
+            if letter_spaces(k - 1) >= space_average
+                finalPhrase = strcat(' ', finalPhrase);
+            end
+        end
     end
 end
-
