@@ -36,6 +36,7 @@ valueSet = {'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ' 'ל
     
     %Step 6 - Running DTW for each component
     final_letters = zeros(length(Frames), 1);
+    finalPhrase = '';
     for k = 1:length(Frames)
         comparison_table = Step6_DTW(letter_vectors{k}, DB_letters);
         

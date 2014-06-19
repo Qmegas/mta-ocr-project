@@ -1,4 +1,10 @@
 function [ new_frames ] = Step4_ComponentMerging( frames )
+% merging components
+% test rectangle intersection area.it there are intersection than take the
+% min value to the cell
+%
+% Input:  frames cell (4* 1)  which contains the positions of x, y,  and  size of width, height.
+% Output:new  frames after merging.
 
     i = 1;
     

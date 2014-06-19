@@ -1,4 +1,11 @@
 function [ letter_vector ] = Step5_Letter2Vector( letter_matrix )
+% make from letter matrix vector of pixel location list 
+% where ever the value in the matric is not zero than write the location in
+% the vector matrix .
+%
+%
+% Input:  letter_matrix the skeleton od the letters 
+% Output:letter_vector the location of non zero values.
     sizes = size(letter_matrix);
     final_vector = zeros(sum(sum(letter_matrix > 0)), 2);
     vector_size = 0;

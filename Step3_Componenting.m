@@ -1,4 +1,12 @@
 function [ frames ] = Step3_Componenting( image )
+% Trace region boundaries in binary image.
+%
+% Input: image  gray  scale  image.
+% Output: frames cell (4* 1)  which contains the positions of x, y,  and  size of width, height.
+
+
+% bwboundaries - traces the exterior boundaries of objects, as well as
+% boundaries of holes inside these objects.
     [B,L] = bwboundaries(image, 'noholes');
     
     frames = cell(length(B), 1);
