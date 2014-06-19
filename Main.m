@@ -25,6 +25,14 @@ valueSet = {'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ' 'ל
     for k = 1:length(Frames)
         rectangle('EdgeColor', [1 0 0], 'Position', Frames{k});
     end
+    
+    %Calculationg frames distance
+    letter_spaces = zeros(length(Frames) - 1, 1);
+    for k=1:(length(Frames) - 1)
+        letter_spaces(k) = abs(Frames{k}(1) + Frames{k}(3) - Frames{k+1}(1));
+    end
+    
+    space_average = mean(letter_spaces);
 
     %Step 5 - Creating vector
     letter_vectors = cell(length(Frames), 1);
