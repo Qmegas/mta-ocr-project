@@ -1,4 +1,4 @@
-function [ final_letters ] = Main( image, DB_letters )
+function [ finalPhrase ] = Main( image, DB_letters )
 % This is the main function for OCR.
 % input:image - which as word in hand write which need to be tested.
 % Output finalPhrase = the word  after OCR
