@@ -69,9 +69,9 @@ function [ finalPhrase ] = Main( image )
         end
         
         % Handling the space case
-        if(length(letter_spaces) > k && k > 1)
-            if letter_spaces(k - 1) >= space_average
-                finalPhrase = strcat(' ', finalPhrase);
+        if(length(letter_spaces) >= k)
+            if(letter_spaces(k) >= space_average)
+                finalPhrase = [ ' ', finalPhrase];
             end
         end
     end
