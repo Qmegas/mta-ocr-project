@@ -1,12 +1,11 @@
-function [ finalPhrase ] = Main( image )
+function [ finalPhrase ] = Main( image, DB_letters )
     % This is the main function for OCR.
     % input:image - which as word in hand write which need to be tested.
     % Output finalPhrase = the word  after OCR
 
     % Pre processing
-    DB_letters = BuildTestDB();
     keySet = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28};
-    valueSet = {'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ë' 'ì', 'î', 'ð', 'ñ', 'ò', 'ô', 'ö', '÷', 'ø', 'ù', 'ú', 'ê', 'í', 'ï', 'ó', 'õ', 'c'};
+    valueSet = {'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½' 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'c'};
     mapOfChars = containers.Map(keySet, valueSet);
     
     %Step 1 - Binarization
@@ -59,8 +58,8 @@ function [ finalPhrase ] = Main( image )
         % 
         if(isempty(finalPhrase) == false)
             
-            if(strcmp(letter, 'c') == true && (strcmp(finalPhrase(1), 'ï') == true || strcmp(finalPhrase(1),'å') == true || strcmp(finalPhrase(1), 'é') == true))
-                finalPhrase(1) = 'à';
+            if(strcmp(letter, 'c') == true && (strcmp(finalPhrase(1), 'ï¿½') == true || strcmp(finalPhrase(1),'ï¿½') == true || strcmp(finalPhrase(1), 'ï¿½') == true))
+                finalPhrase(1) = 'ï¿½';
             else
                 finalPhrase = strcat(letter, finalPhrase);    
             end
